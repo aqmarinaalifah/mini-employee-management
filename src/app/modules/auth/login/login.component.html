@@ -1,0 +1,58 @@
+<div class="login-container">
+  <div class="main-container">
+    <div class="title">Login</div>
+    <form [formGroup]="loginForm" class="my-4">
+      <div class="flex flex-col mx-5">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          class="border border-gray-700 mt-1 p-2 rounded"
+        />
+        @if (
+          loginForm.get("username")?.hasError("required") &&
+          (loginForm.get("username")?.dirty ||
+            loginForm.get("username")?.touched)
+        ) {
+          <div class="text-red-700 bg-red-200 p-2">Username required</div>
+        }
+      </div>
+      <div class="flex flex-col mx-5 mt-4 mb-6">
+        <label for="password">Password</label>
+        <div class="flex items-center">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            formControlName="password"
+            class="border border-gray-700 mt-1 p-2 rounded w-full"
+          />
+          <button
+            class="border border-gray-700 mt-1 p-1 rounded flex justify-items-center"
+            (click)="toggleButton()"
+          >
+            <mat-icon>{{
+              showPassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+        </div>
+        @if (
+          loginForm.get("password")?.hasError("required") &&
+          (loginForm.get("password")?.dirty ||
+            loginForm.get("password")?.touched)
+        ) {
+          <div class="text-red-700 bg-red-200 p-2">Password required</div>
+        }
+      </div>
+      <div class="mx-5">
+        <button
+          type="submit"
+          class="submitButton p-2 rounded-2xl w-full cursor-pointer"
+          (click)="onSubmit()"
+        >
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

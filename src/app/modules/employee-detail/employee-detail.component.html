@@ -1,0 +1,58 @@
+<div class="font-semibold text-xl text-gray-800 mt-2 mb-3">Employee Detail</div>
+<div class="app-container px-6 rounded">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="flex">
+      <label for="username">Username : </label>
+      <p class="p-0 my-0 ml-1">{{ employeeData?.username }}</p>
+    </div>
+    <div class="flex">
+      <label for="email">Email : </label>
+      <p class="p-0 my-0 ml-1">{{ employeeData?.email }}</p>
+    </div>
+    <div class="flex">
+      <label for="firstName">First Name : </label>
+      <p class="p-0 my-0 ml-1">{{ employeeData?.firstName }}</p>
+    </div>
+    <div class="flex">
+      <label for="lastName">Last Name : </label>
+      <p class="p-0 my-0 ml-1">{{ employeeData?.lastName }}</p>
+    </div>
+    <div class="flex">
+      <label for="birthDate">Birth Date : </label>
+      <p class="p-0 my-0 ml-1">
+        {{ employeeData?.birthDate | date: "yyyy-MM-dd" }}
+      </p>
+    </div>
+    <div class="flex">
+      <label for="basicSalary">Basic Salary : </label>
+      <p class="p-0 my-0 ml-1">
+        {{
+          employeeData?.basicSalary
+            | currency: "IDR" : "symbol" : "1.2-2" : "id-ID"
+        }}
+      </p>
+    </div>
+    <div class="flex">
+      <label for="group">Group : </label>
+      <p class="p-0 my-0 ml-1">{{ employeeData?.group }}</p>
+    </div>
+    <div class="flex">
+      <label for="status">Status : </label>
+      <p class="p-0 my-0 ml-1">{{ employeeData?.status }}</p>
+    </div>
+    <div class="flex">
+      <label for="description">Description : </label>
+      <p class="p-0 my-0 ml-1">
+        {{ employeeData?.description | date: "yyyy-MM-dd HH:mm:ss" }}
+      </p>
+    </div>
+    <div>
+      <button
+        class="backButton py-2 px-4 rounded-lg cursor-pointer"
+        (click)="onBack()"
+      >
+        OK
+      </button>
+    </div>
+  </div>
+</div>

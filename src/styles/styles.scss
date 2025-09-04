@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use "@angular/material" as mat;
+@use "./m3-theme" as m3;
+@include mat.core();
+
+// @tailwind base;
+// @tailwind components;
+@tailwind utilities;
+
+:root {
+  @include mat.all-component-themes(m3.$light-theme);
+  @include mat.system-level-colors(m3.$light-theme);
+  @include mat.system-level-typography(m3.$light-theme);
+}
+
+html,
+body {
+  margin: 0;
+}
+
+::ng-deep .p-menubar {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  width: 100% !important;
+}
+
+/* Keep menu items from shrinking or wrapping */
+::ng-deep .p-menubar .p-menubar-root-list {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+}
+
+::ng-deep .p-menubar .p-menuitem {
+  flex-shrink: 0 !important;
+}
+
+/* Optional: style the scrollbar */
+::ng-deep .p-menubar::-webkit-scrollbar {
+  height: 4px;
+}
+::ng-deep .p-menubar::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}

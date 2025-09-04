@@ -1,0 +1,167 @@
+<div>
+  <div class="mt-2 mb-3 font-semibold text-xl text-gray-800">
+    Add New Employee
+  </div>
+  <div class="app-container px-6 rounded">
+    <p-toast />
+    <form [formGroup]="addForm">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="flex flex-col">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            formControlName="username"
+            class="border border-gray-700 mt-1 p-2 rounded"
+          />
+          @if (
+            addForm.get("username")?.hasError("required") &&
+            (addForm.get("username")?.dirty || addForm.get("username")?.touched)
+          ) {
+            <div class="text-red-700 bg-red-200 p-2">Username required</div>
+          }
+        </div>
+        <div class="flex flex-col">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="border border-gray-700 mt-1 p-2 rounded"
+          />
+          @if (addForm.get("email")?.dirty || addForm.get("email")?.touched) {
+            @if (addForm.get("email")?.hasError("required")) {
+              <div class="text-red-700 bg-red-200 p-2">Email required</div>
+            }
+            @if (addForm.get("email")?.hasError("email")) {
+              <div class="text-red-700 bg-red-200 p-2">Invalid email</div>
+            }
+          }
+        </div>
+        <div class="flex flex-col">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            formControlName="firstName"
+            class="border border-gray-700 mt-1 p-2 rounded"
+          />
+          @if (
+            addForm.get("firstName")?.hasError("required") &&
+            (addForm.get("firstName")?.dirty ||
+              addForm.get("firstName")?.touched)
+          ) {
+            <div class="text-red-700 bg-red-200 p-2">First Name required</div>
+          }
+        </div>
+        <div class="flex flex-col">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            class="border border-gray-700 mt-1 p-2 rounded"
+          />
+          @if (
+            addForm.get("lastName")?.hasError("required") &&
+            (addForm.get("lastName")?.dirty || addForm.get("lastName")?.touched)
+          ) {
+            <div class="text-red-700 bg-red-200 p-2">Last Name required</div>
+          }
+        </div>
+        <div class="flex flex-col">
+          <label for="birthDate">Birth Date</label>
+          <input
+            type="date"
+            id="birthDate"
+            formControlName="birthDate"
+            [max]="maxDate"
+            class="border border-gray-700 mt-1 p-2 rounded"
+          />
+          @if (
+            addForm.get("birthDate")?.hasError("required") &&
+            (addForm.get("birthDate")?.dirty ||
+              addForm.get("birthDate")?.touched)
+          ) {
+            <div class="text-red-700 bg-red-200 p-2">Birth Date required</div>
+          }
+        </div>
+        <div class="flex flex-col">
+          <label for="basicSalary">Basic Salary</label>
+          <input
+            #query
+            type="text"
+            id="basicSalary"
+            formControlName="basicSalary"
+            class="border border-gray-700 mt-1 p-2 rounded basicFont"
+            (input)="numberOnly(query.value)"
+          />
+          @if (
+            addForm.get("basicSalary")?.hasError("required") &&
+            (addForm.get("basicSalary")?.dirty ||
+              addForm.get("basicSalary")?.touched)
+          ) {
+            <div class="text-red-700 bg-red-200 p-2">Basic Salary required</div>
+          }
+        </div>
+        <div class="flex flex-col">
+          <label for="group">Group</label>
+          <p-dropdown
+            [options]="groupList"
+            formControlName="group"
+            [filter]="true"
+            [showClear]="true"
+          >
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+              <div class="flex align-items-center gap-2">
+                <div>{{ selectedOption }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-group pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                <div>{{ group }}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+          @if (
+            addForm.get("group")?.hasError("required") &&
+            (addForm.get("group")?.dirty || addForm.get("group")?.touched)
+          ) {
+            <div class="text-red-700 bg-red-200 p-2">Group required</div>
+          }
+        </div>
+        <div class="flex flex-col">
+          <label for="status">Status</label>
+          <select
+            id="status"
+            formControlName="status"
+            class="border border-gray-700 mt-1 p-2 rounded basicFont"
+          >
+            <option
+              *ngFor="let item of statusList"
+              [value]="item"
+              class="basicFont"
+            >
+              {{ item }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="flex items-center justify-end w-full gap-2 mt-4">
+        <button
+          class="border border-orange-900 bg-white text-orange-900 p-2 rounded-lg cursor-pointer"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="submitButton p-2 rounded-lg cursor-pointer"
+          (click)="onSubmit()"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

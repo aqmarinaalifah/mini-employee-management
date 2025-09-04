@@ -1,0 +1,31 @@
+.app-container {
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+}
+
+::ng-deep .p-table tbody tr:nth-child(even) {
+  background-color: #adadad !important;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  border-color: #d1d1d1 !important;
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  border-color: #d1d1d1 !important;
+}
+
+::ng-deep .p-datatable .p-datatable-header {
+  border: none;
+}
+
+.add-button {
+  background-color: #cfcfdfbf;
+  color: #1d1c22;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}

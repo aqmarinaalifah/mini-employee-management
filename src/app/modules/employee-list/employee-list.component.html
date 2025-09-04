@@ -1,0 +1,92 @@
+<div>
+  <div class="font-semibold text-xl text-gray-800 mt-2 mb-3">Employee List</div>
+  <div class="app-container px-6 rounded">
+    <p-table
+      #dt
+      [value]="employees"
+      [paginator]="true"
+      [rows]="10"
+      [rowsPerPageOptions]="[10, 15, 20]"
+      (sortFunction)="customSort($event)"
+      [customSort]="true"
+      [globalFilterFields]="[
+        'username',
+        'firstName',
+        'lastName',
+        'email',
+        'status',
+        'group',
+      ]"
+      showGridlines
+      styleClass="p-datatable-gridlines p-datatable-striped"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <p-iconField iconPosition="left" class="ml-auto">
+            <p-inputIcon>
+              <i class="pi pi-search"></i>
+            </p-inputIcon>
+            <input
+              pInputText
+              type="text"
+              [value]="filterValue"
+              (input)="filterTable($event)"
+              placeholder="Search keyword"
+            />
+          </p-iconField>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="username">
+            Username <p-sortIcon field="username" />
+          </th>
+          <th pSortableColumn="firstName">
+            First Name <p-sortIcon field="firstName" />
+          </th>
+          <th pSortableColumn="lastName">
+            Last Name<p-sortIcon field="lastName" />
+          </th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Group</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-employees>
+        <tr>
+          <td>{{ employees.username }}</td>
+          <td>{{ employees.firstName }}</td>
+          <td>{{ employees.lastName }}</td>
+          <td>{{ employees.email }}</td>
+          <td>{{ employees.status }}</td>
+          <td>{{ employees.group }}</td>
+          <td>
+            <p-toast />
+            <button
+              title="Detail"
+              (click)="onDetail(employees)"
+              class="border border-blue-600 bg-white p-1.5 rounded mr-1 cursor-pointer hover:bg-blue-100"
+            >
+              <i class="pi pi-info" style="color: blue"></i>
+            </button>
+            <button
+              title="Edit"
+              (click)="onEdit()"
+              class="border border-yellow-600 bg-white p-1.5 rounded mr-1 cursor-pointer hover:bg-orange-100"
+            >
+              <i class="pi pi-pencil" style="color: orange"></i>
+            </button>
+            <button
+              title="Delete"
+              (click)="onDelete()"
+              class="border border-red-600 bg-white p-1.5 rounded cursor-pointer hover:bg-red-100"
+            >
+              <i class="pi pi-trash" style="color: red"></i>
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
