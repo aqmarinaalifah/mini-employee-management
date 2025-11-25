@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.20.
 
+## Demo
+
+https://aqmarinaalifah.github.io/mini-employee-management
+
 ## Requirements
 
 Node.js >= v18.13.0
